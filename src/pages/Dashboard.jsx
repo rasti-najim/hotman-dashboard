@@ -1,27 +1,78 @@
+import { useState } from "react";
 import { Row } from "react-bootstrap";
 import styled, { css } from "styled-components";
 import { FaPlus } from "react-icons/fa";
+import { Frame, Page, Stack, useCycle } from "framer";
 
 // custom
 import Card from "../components/Card";
+import Table from "../components/Table";
+import Modal from "../components/Modal";
+import Add from "../components/Add";
+import { AnimatePresence, AnimateSharedLayout, motion } from "framer-motion";
+// import Modal from "../components/Modal";
 
 export default function Dashboard() {
+  const [showModal, setShowModal] = useState();
+  const [state, setState] = useState(false);
+
+  const items = [
+    {
+      id: 0,
+      subtitle: "Cool Stuff",
+      title: "Framer Motion",
+    },
+    {
+      id: 1,
+      subtitle: "Cool Stuff",
+      title: "Framer Motion",
+    },
+    {
+      id: 2,
+      subtitle: "Cool Stuff",
+      title: "Framer Motion",
+    },
+    {
+      id: 3,
+      subtitle: "Cool Stuff",
+      title: "Framer Motion",
+    },
+  ];
+
   return (
     <Container>
       <h1>Dashboard</h1>
       <CardsContainer>
-        <Card />
-        <Card />
-        <Card />
+        <Card title="Arrivals" number={54} />
+        <Card title="Departures" number={12} />
+        <Card title="Rooms Occupied" number={50} />
       </CardsContainer>
       <ReservationsContainer>
         <h6>Reservations</h6>
         <SearchBox placeholder="Search name, room, or id" />
-        <Button>
+        <Button
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
+          onClick={() => setShowModal(!showModal)}
+        >
           <StyledFaPlus />
           Add
         </Button>
       </ReservationsContainer>
+      <Table />
+      <Stack direction="horizontal" size={100} gap={120}>
+        <Frame background="#09F" size={25} radius="50%" />
+        <Frame background="#05F" size={25} radius="50%" />
+      </Stack>
+      {/* <Frame center /> */}
+      {/* <Page>
+        <Frame>A</Frame>
+        <Frame>B</Frame>
+        <Frame>C</Frame>
+      </Page> */}
+      {/* <Modal showModal={showModal}>
+        <Add />
+      </Modal> */}
     </Container>
   );
 }
@@ -29,6 +80,8 @@ export default function Dashboard() {
 const Container = styled.div`
   height: 90vh;
   width: 90vw;
+  height: 100%;
+  width: 100%;
   margin-left: 30px;
 `;
 
@@ -40,20 +93,20 @@ const ReservationsContainer = styled(Row)`
   align-items: center;
   justify-content: space-around;
   margin-top: 30px;
+  margin-bottom: 30px;
 `;
 
-const Button = styled.button`
+const Button = styled(motion.button)`
   border: 2px solid;
   padding: 5px 20px;
   background-color: #536dfe;
+  /* background-color: #5469d4; */
+  /* background-color: #1899ff; */
+  /* background-color: #000; */
   color: #fff;
   border-radius: 5px;
   display: flex;
   align-items: center;
-
-  :hover {
-    transform: scale(1.1, 1.1);
-  }
 `;
 
 const SearchBox = styled.input`
@@ -68,34 +121,4 @@ const SearchBox = styled.input`
 
 const StyledFaPlus = styled(FaPlus)`
   padding-right: 5px;
-`;
-
-const Liquid = styled.div`
-  position: absolute;
-  width: 200px;
-  height: 200px;
-  background: #536dfe;
-  box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.5);
-  transition: 0.5s;
-
-  :before,
-  :after {
-    content: "";
-    position: absolute;
-    top: 0;
-    width: 200%;
-    height: 200%;
-    left: 50%;
-    transform: translate(-50%, -75%);
-  }
-
-  :before {
-    border-radius: 45%;
-    background: #141414;
-  }
-
-  :after {
-    border-radius: 40%;
-    background: rgba(20, 20, 20, 0.5);
-  }
 `;

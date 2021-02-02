@@ -1,5 +1,4 @@
 import styled, { css } from "styled-components";
-import { FiHome } from "react-icons/fi";
 import {
   FaHome,
   FaCalendarAlt,
@@ -41,7 +40,10 @@ const Container = styled.div`
   width: 20vw;
   /* background-color: #536dfe; */
   /* #051937 */
-  background-color: #ffffff;
+  /* #605bff */
+  /* #4a30e0 */
+  background-color: #f7fafc;
+  /* background-color: #ffffff; */
   border-right: solid #f2f2f2;
   border-right-width: 1px;
 `;
@@ -59,8 +61,7 @@ const IconContainer = styled.div`
   :hover {
     cursor: pointer;
     background-color: #536dfe;
-    /* background-color: #ffffff; */
-    /* background-image: linear-gradient(to right, #536dfe, #833fca); */
+    /* background-color: #000; */
   }
 
   ${(props) =>
@@ -70,7 +71,7 @@ const IconContainer = styled.div`
       margin-top: 15px;
 
       :hover {
-        background-color: #fff;
+        background-color: #f7fafc;
       }
     `}
 `;
@@ -79,7 +80,6 @@ const Text = styled.p`
   font-size: 14px;
   margin-left: 10px;
   color: #000;
-
   ${IconContainer}:hover & {
     color: #fff;
   }
