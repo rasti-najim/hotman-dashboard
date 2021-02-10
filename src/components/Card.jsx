@@ -3,7 +3,10 @@ import { motion } from "framer-motion";
 
 export default function Card({ title, number }) {
   return (
-    <Container whileHover={{ scale: 1.1 }}>
+    <Container
+      whileHover={{ scale: 1.1 }}
+      transition={{ ease: "easeOut", duration: 0.3 }}
+    >
       <IconContainer>
         <TextContainer>
           <h5>{title}</h5>
@@ -21,12 +24,13 @@ const Container = styled(motion.div)`
   flex-direction: column-reverse;
   height: 20vh;
   width: 20vw;
-  background-color: #fff;
   border-radius: 15px;
   text-align: start;
   margin-right: 20px;
+  margin-top: 1.2rem;
 
-  border: solid #e6eaff;
+  /* border: solid #e6eaff; */
+  border: solid #000;
   border-width: 2px;
   /* box-shadow: 0px 1px 10px 0px rgba(0, 0, 0, 0.4);
   -webkit-box-shadow: 0px 1px 10px 0px rgba(0, 0, 0, 0.4);

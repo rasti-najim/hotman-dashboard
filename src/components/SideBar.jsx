@@ -5,30 +5,32 @@ import {
   FaBorderAll,
   FaDollyFlatbed,
 } from "react-icons/fa";
+import { NavLink } from "react-router-dom";
+import ScrollLock from "react-scrolllock";
 
 export default function SideBar() {
   return (
-    <Container>
-      <IconContainer title>
+    <ScrollLock>
+      <Container>
         <Title>New Bussiness</Title>
-      </IconContainer>
-      <IconContainer selected>
-        <StyledFaHome />
-        <Text>Dashboard</Text>
-      </IconContainer>
-      <IconContainer>
-        <StyledFaCalendarAlt />
-        <Text>Reservations</Text>
-      </IconContainer>
-      <IconContainer>
-        <StyledFaBorderAll />
-        <Text>Rooms</Text>
-      </IconContainer>
-      <IconContainer>
-        <StyledFaDollyFlatbed />
-        <Text>Inventory</Text>
-      </IconContainer>
-    </Container>
+        <StyledLink exact to="/">
+          <StyledFaHome />
+          <Text>Overview</Text>
+        </StyledLink>
+        <StyledLink to="/reservations">
+          <StyledFaCalendarAlt />
+          <Text>Reservations</Text>
+        </StyledLink>
+        <StyledLink to="/rooms">
+          <StyledFaBorderAll />
+          <Text>Rooms</Text>
+        </StyledLink>
+        <StyledLink to="/inventory">
+          <StyledFaDollyFlatbed />
+          <Text>Inventory</Text>
+        </StyledLink>
+      </Container>
+    </ScrollLock>
   );
 }
 
@@ -48,7 +50,10 @@ const Container = styled.div`
   border-right-width: 1px;
 `;
 
-const IconContainer = styled.div`
+const StyledLink = styled(NavLink)`
+  color: inherit;
+  text-decoration: inherit;
+
   display: flex;
   flex-direction: row;
   align-items: baseline;
@@ -61,58 +66,85 @@ const IconContainer = styled.div`
   :hover {
     cursor: pointer;
     background-color: #536dfe;
+    color: inherit;
+    text-decoration: inherit;
     /* background-color: #000; */
   }
 
-  ${(props) =>
-    props.title &&
-    css`
-      margin-bottom: 30px;
-      margin-top: 15px;
-
-      :hover {
-        background-color: #f7fafc;
-      }
-    `}
+  &.active {
+    background-color: #536dfe;
+    color: inherit;
+    text-decoration: inherit;
+  }
 `;
 
 const Text = styled.p`
   font-size: 14px;
   margin-left: 10px;
   color: #000;
-  ${IconContainer}:hover & {
+  ${StyledLink}:hover & {
+    color: #fff;
+  }
+
+  ${StyledLink}.active & {
     color: #fff;
   }
 `;
 
 const Title = styled.h5`
   color: #000;
+  margin-top: 30px;
+  margin-bottom: 30px;
 `;
 
 const StyledFaHome = styled(FaHome)`
+  position: relative;
+  top: 2px;
   color: "#000";
-  ${IconContainer}:hover & {
+  ${StyledLink}:hover & {
+    color: #fff;
+  }
+
+  ${StyledLink}.active & {
     color: #fff;
   }
 `;
 
 const StyledFaCalendarAlt = styled(FaCalendarAlt)`
+  position: relative;
+  top: 2px;
   color: "#000";
-  ${IconContainer}:hover & {
+  ${StyledLink}:hover & {
+    color: #fff;
+  }
+
+  ${StyledLink}.active & {
     color: #fff;
   }
 `;
 
 const StyledFaBorderAll = styled(FaBorderAll)`
+  position: relative;
+  top: 2px;
   color: "#000";
-  ${IconContainer}:hover & {
+  ${StyledLink}:hover & {
+    color: #fff;
+  }
+
+  ${StyledLink}.active & {
     color: #fff;
   }
 `;
 
 const StyledFaDollyFlatbed = styled(FaDollyFlatbed)`
+  position: relative;
+  top: 2px;
   color: "#000";
-  ${IconContainer}:hover & {
+  ${StyledLink}:hover & {
+    color: #fff;
+  }
+
+  ${StyledLink}.active & {
     color: #fff;
   }
 `;

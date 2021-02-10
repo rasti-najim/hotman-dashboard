@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Row } from "react-bootstrap";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import { FaPlus } from "react-icons/fa";
 import { Frame, Page, Stack, useCycle } from "framer";
 
@@ -12,9 +12,8 @@ import Add from "../components/Add";
 import { AnimatePresence, AnimateSharedLayout, motion } from "framer-motion";
 // import Modal from "../components/Modal";
 
-export default function Dashboard() {
-  const [showModal, setShowModal] = useState();
-  const [state, setState] = useState(false);
+export default function Overview() {
+  const [showModal, setShowModal] = useState(false);
 
   const items = [
     {
@@ -41,7 +40,7 @@ export default function Dashboard() {
 
   return (
     <Container>
-      <h1>Dashboard</h1>
+      <h1>Overview</h1>
       <CardsContainer>
         <Card title="Arrivals" number={54} />
         <Card title="Departures" number={12} />
@@ -53,7 +52,7 @@ export default function Dashboard() {
         <Button
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
-          onClick={() => setShowModal(!showModal)}
+          onClick={() => setShowModal(true)}
         >
           <StyledFaPlus />
           Add
@@ -73,16 +72,18 @@ export default function Dashboard() {
       {/* <Modal showModal={showModal}>
         <Add />
       </Modal> */}
+      <Modal showModal={showModal} setShowModal={setShowModal}>
+        <Add setShowModal={setShowModal} />
+      </Modal>
     </Container>
   );
 }
 
 const Container = styled.div`
   height: 90vh;
-  width: 90vw;
-  height: 100%;
-  width: 100%;
-  margin-left: 30px;
+  width: 100vw;
+  padding-left: 30px;
+  /* overflow-y: scroll; */
 `;
 
 const CardsContainer = styled(Row)`
@@ -114,9 +115,11 @@ const SearchBox = styled.input`
   border-width: 0px;
   border-radius: 5px;
   padding: 10px;
-  box-shadow: 0px 3px 10px 0px rgba(0, 0, 0, 0.4);
+  border: solid #000;
+  border-width: 2px;
+  /* box-shadow: 0px 3px 10px 0px rgba(0, 0, 0, 0.4);
   -webkit-box-shadow: 0px 3px 10px 0px rgba(0, 0, 0, 0.4);
-  -moz-box-shadow: 0px 3px 10px 0px rgba(0, 0, 0, 0.4);
+  -moz-box-shadow: 0px 3px 10px 0px rgba(0, 0, 0, 0.4); */
 `;
 
 const StyledFaPlus = styled(FaPlus)`

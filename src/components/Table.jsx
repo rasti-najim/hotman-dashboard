@@ -1,5 +1,10 @@
 import { useEffect, useState } from "react";
+import { Button } from "react-bootstrap";
 import DataTable from "react-data-table-component";
+import faker from "faker";
+
+// custom
+import Modal from "../components/Modal";
 
 // const data = [
 //   {
@@ -13,8 +18,11 @@ import DataTable from "react-data-table-component";
 const columns = [
   {
     name: "ID",
-    selector: "title",
+    selector: "id",
     sortable: true,
+    style: {
+      backgroundColor: "#ff0033",
+    },
   },
   {
     name: "Guest",
@@ -36,21 +44,38 @@ const columns = [
   },
 ];
 
-export default function Table() {
-  const [data, setData] = useState([]);
+const data = new Array(100).fill(true).map(() => ({
+  id: faker.random.number(),
+  guest: faker.name.findName(),
+  room: faker.random.number(),
+  // date: faker.date.past(),
+  date: faker.random.number(),
+}));
 
-  useEffect(() => {
-    fetch(
-      "https://jsonblob.com/api/jsonBlob/9cd5551c-63e1-11eb-b9a6-777351e8b9c2"
-    )
-      .then((response) => response.json())
-      .then((json) => setData(json));
-  }, []);
+export default function Table() {
+  const [showModal, setShowModal] = useState(false);
+  const [row, setRow] = useState([]);
+
   return (
-    <DataTable
-      //   title="Arnold Movies"
-      columns={columns}
-      data={data.items}
-    />
+    <>
+      <DataTable
+        // title="Reservations"
+        columns={columns}
+        data={data}
+        highlightOnHover
+        pointerOnHover
+        onRowClicked={(row) => {
+          setRow(row);
+          setShowModal(true);
+        }}
+        selectableRows
+      />
+      <Modal showModal={showModal} setShowModal={setShowModal}>
+        <h1>{row.id}</h1>
+        <h1>{row.guest}</h1>
+        <h1>{row.room}</h1>
+        <h1>{row.date}</h1>
+      </Modal>
+    </>
   );
 }

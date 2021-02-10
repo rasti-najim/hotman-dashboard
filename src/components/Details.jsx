@@ -8,8 +8,29 @@ import {
 } from "react-icons/fa";
 import { Frame, Stack } from "framer";
 import { Row, Col } from "react-bootstrap";
+import {
+  XYPlot,
+  VerticalBarSeries,
+  XAxis,
+  YAxis,
+  HorizontalGridLines,
+  LineSeries,
+} from "react-vis";
 
 export default function Details() {
+  const data = [
+    { x: 0, y: 8 },
+    { x: 1, y: 5 },
+    { x: 2, y: 4 },
+    { x: 3, y: 9 },
+    { x: 4, y: 1 },
+    { x: 5, y: 7 },
+    { x: 6, y: 6 },
+    { x: 7, y: 3 },
+    { x: 8, y: 2 },
+    { x: 9, y: 0 },
+  ];
+
   return (
     <Container>
       <Title>Today's Activities</Title>
@@ -23,6 +44,8 @@ export default function Details() {
             radius="50%"
             color="#fff"
             style={{ marginBottom: "10px" }}
+            whileHover={{ scale: 1.2, borderRadius: "20%" }}
+            transition={{ ease: "easeOut", duration: 0.3 }}
           >
             5
           </Frame>
@@ -37,6 +60,8 @@ export default function Details() {
             radius="50%"
             color="#fff"
             style={{ marginBottom: "10px" }}
+            whileHover={{ scale: 1.2, borderRadius: "20%" }}
+            transition={{ ease: "easeOut", duration: 0.3 }}
           >
             22
           </Frame>
@@ -51,12 +76,19 @@ export default function Details() {
             radius="50%"
             color="#fff"
             style={{ marginBottom: "10px" }}
+            whileHover={{ scale: 1.2, borderRadius: "20%" }}
+            transition={{ ease: "easeOut", duration: 0.3 }}
           >
             $1000
           </Frame>
           <p>Revenue</p>
         </Col>
       </Row>
+      {/* <XYPlot height={200} width={200}>
+        <VerticalBarSeries data={data} color="#000" />
+        <XAxis title="X" />
+        <YAxis />
+      </XYPlot> */}
     </Container>
   );
 }
