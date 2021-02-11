@@ -1,15 +1,16 @@
 import { useState, useEffect } from "react";
-import { Row } from "react-bootstrap";
 import styled from "styled-components";
 
 // custom
 import Table from "../components/Table";
+import BarChart from "../components/BarChart";
 
 export default function Reservations() {
   return (
     <Container>
       <h1>Reservations</h1>
-      <Table />
+      <BarChart />
+      {/* <Table /> */}
     </Container>
   );
 }

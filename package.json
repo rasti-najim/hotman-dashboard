@@ -12,7 +12,14 @@
     "@types/node": "^14.14.22",
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
+    "@visx/axis": "^1.4.0",
+    "@visx/gradient": "^1.0.0",
+    "@visx/group": "^1.0.0",
+    "@visx/mock-data": "^1.0.0",
+    "@visx/scale": "^1.4.0",
+    "@visx/shape": "^1.4.0",
     "bootstrap": "^4.6.0",
+    "d3-array": "^2.11.0",
     "faker": "^5.3.1",
     "formik": "^2.2.6",
     "framer": "^1.2.18",
@@ -56,6 +63,7 @@
     ]
   },
   "devDependencies": {
+    "@types/d3-array": "^2.9.0",
     "@types/styled-components": "^5.1.7"
   }
 }

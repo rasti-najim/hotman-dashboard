@@ -1,3 +1,4 @@
+import React from "react";
 import styled from "styled-components";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { createGlobalStyle } from "styled-components";
@@ -6,10 +7,11 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 // custom
 import logo from "./logo.svg";
 import SideBar from "./components/SideBar";
-import Overview from "./pages/Overview";
 import Details from "./components/Details";
-import Rooms from "./pages/Rooms";
-import Reservations from "./pages/Reservations";
+import { Loading } from "@geist-ui/react";
+const Overview = React.lazy(() => import("./pages/Overview"));
+const Rooms = React.lazy(() => import("./pages/Rooms"));
+const Reservations = React.lazy(() => import("./pages/Reservations"));
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -27,12 +29,13 @@ function App() {
       <GlobalStyle />
       <Container>
         <SideBar />
-        {/* <Overview /> */}
-        <Switch>
-          <Route exact path="/" component={Overview} />
-          <Route path="/reservations" component={Reservations} />
-          <Route path="/rooms" component={Rooms} />
-        </Switch>
+        <React.Suspense fallback={<Loading size="large" />}>
+          <Switch>
+            <Route exact path="/" component={Overview} />
+            <Route path="/reservations" component={Reservations} />
+            <Route path="/rooms" component={Rooms} />
+          </Switch>
+        </React.Suspense>
         <Details />
       </Container>
     </Router>
