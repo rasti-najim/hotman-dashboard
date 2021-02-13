@@ -8,7 +8,8 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import logo from "./logo.svg";
 import SideBar from "./components/SideBar";
 import Details from "./components/Details";
-import { Loading } from "@geist-ui/react";
+import Loading from "./components/Loading";
+// import { Loading } from "@geist-ui/react";
 const Overview = React.lazy(() => import("./pages/Overview"));
 const Rooms = React.lazy(() => import("./pages/Rooms"));
 const Reservations = React.lazy(() => import("./pages/Reservations"));
@@ -29,7 +30,7 @@ function App() {
       <GlobalStyle />
       <Container>
         <SideBar />
-        <React.Suspense fallback={<Loading size="large" />}>
+        <React.Suspense fallback={<Loading />}>
           <Switch>
             <Route exact path="/" component={Overview} />
             <Route path="/reservations" component={Reservations} />

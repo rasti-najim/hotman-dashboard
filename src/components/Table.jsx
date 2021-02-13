@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { Button } from "react-bootstrap";
 import DataTable from "react-data-table-component";
 import faker from "faker";
 

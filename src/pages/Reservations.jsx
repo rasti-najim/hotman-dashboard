@@ -10,7 +10,7 @@ export default function Reservations() {
     <Container>
       <h1>Reservations</h1>
       <BarChart />
-      {/* <Table /> */}
+      <Table />
     </Container>
   );
 }

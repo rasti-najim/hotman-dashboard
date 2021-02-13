@@ -12,7 +12,8 @@ export default function SideBar() {
   return (
     <ScrollLock>
       <Container>
-        <Title>New Bussiness</Title>
+        {/* <Title>New Bussiness</Title> */}
+        <Title>Front Desk</Title>
         <StyledLink exact to="/">
           <StyledFaHome />
           <Text>Overview</Text>
