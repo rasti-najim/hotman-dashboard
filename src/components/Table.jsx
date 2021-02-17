@@ -59,6 +59,7 @@ export default function Table() {
     <>
       <DataTable
         // title="Reservations"
+
         columns={columns}
         data={data}
         highlightOnHover

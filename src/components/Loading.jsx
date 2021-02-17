@@ -47,6 +47,6 @@ const Circle = styled(motion.span)`
   display: block;
   width: 1rem;
   height: 1rem;
-  background-color: #000;
+  background-color: ${({ theme }) => (theme.mode == "light" ? "#000" : "#fff")};
   border-radius: 0.5rem;
 `;

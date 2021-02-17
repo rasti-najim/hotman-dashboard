@@ -1,7 +1,9 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
-import { NavLink } from "react-router-dom";
+import { NavLink, useHistory, useLocation } from "react-router-dom";
 import { motion, useMotionValue, useTransform } from "framer-motion";
+import { Formik, Form, Field } from "formik";
+import * as Yup from "yup";
 
 // custom
 import Wave from "../components/Wave";
@@ -12,38 +14,83 @@ const variants = {
   success: { background: "#00BFA6" },
 };
 
-export default function Login() {
+const auth = {
+  email: "rastirasheed@gmail.com",
+  password: "12345678",
+};
+
+export default function Login({ setLoggedIn }) {
   const [tapped, setTapped] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  let history = useHistory();
 
   return (
     <Page>
       <Container>
         <Title>Sign in to your account</Title>
         <Label>
-          <div style={{ display: "flex", justifyContent: "space-between" }}>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+            }}
+          >
             Email:
-            <AnimatedTick tapped={tapped} size={50} />
+            <AnimatedTick tapped={tapped} size={25} />
           </div>
-          <Input />
+          <Input
+            type="text"
+            name="email"
+            onChange={(event) => {
+              console.log(event.target.value);
+              setEmail(event.target.value);
+            }}
+            value={email}
+          />
         </Label>
         <Label>
-          Password:
-          <Input />
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+            }}
+          >
+            Password:
+            <AnimatedTick tapped={tapped} size={25} />
+          </div>
+          <Input
+            type="password"
+            name="password"
+            onChange={(event) => {
+              console.log(event.target.value);
+              setPassword(event.target.value);
+            }}
+            value={password}
+          />
         </Label>
-
         <AddButton
           initial="normal"
           animate={tapped ? "success" : "normal"}
           variants={variants}
-          onClick={() => setTapped(!tapped)}
+          onClick={login}
         >
           <span>Sign in</span>
         </AddButton>
-        <AnimatedTick tapped={tapped} />
       </Container>
       <Wave />
     </Page>
   );
+
+  function login() {
+    if (auth.email == email.trim() && auth.password == password) {
+      window.localStorage.setItem("loggedIn", "true");
+      setLoggedIn(true);
+      history.push("/");
+    }
+  }
 }
 
 const Page = styled(motion.div)`

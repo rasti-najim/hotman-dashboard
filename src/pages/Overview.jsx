@@ -12,7 +12,7 @@ import Add from "../components/Add";
 import { AnimatePresence, AnimateSharedLayout, motion } from "framer-motion";
 // import Modal from "../components/Modal";
 
-export default function Overview() {
+export default function Overview({ toggleTheme }) {
   const [showModal, setShowModal] = useState(false);
 
   const items = [
@@ -57,6 +57,13 @@ export default function Overview() {
           <StyledFaPlus />
           Add
         </Button>
+        <Button
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
+          onClick={toggleTheme}
+        >
+          Dark Mode
+        </Button>
       </ReservationsContainer>
       <Table />
       <Stack direction="horizontal" size={100} gap={120}>
@@ -83,6 +90,7 @@ const Container = styled.div`
   height: 90vh;
   width: 100vw;
   padding-left: 30px;
+  /* background: ${({ theme }) => theme.background}; */
   /* overflow-y: scroll; */
 `;
 
@@ -99,6 +107,7 @@ const ReservationsContainer = styled(Row)`
 
 const Button = styled(motion.button)`
   border: 2px solid;
+  border-color: ${({ theme }) => (theme.mode == "light" ? "#fff" : "#000")};
   padding: 5px 20px;
   background-color: #536dfe;
   /* background-color: #5469d4; */

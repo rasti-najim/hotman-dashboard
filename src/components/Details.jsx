@@ -103,14 +103,15 @@ const Container = styled.div`
   /* #051937 */
   /* #605bff */
   /* #4a30e0 */
-  background-color: #f7fafc;
+  background-color: ${({ theme }) => theme.body};
+  /* background-color: #f7fafc; */
   /* background-color: #ffffff; */
-  border-left: solid #f2f2f2;
+  border-left: solid
+    ${({ theme }) => (theme.mode == "light" ? "#f2f2f2" : "#2D2D30")};
   border-left-width: 1px;
 `;
 
 const Title = styled.h5`
-  color: #000;
   margin-top: 30px;
   margin-bottom: 30px;
 `;

@@ -12,7 +12,7 @@ export default function SideBar() {
   return (
     <ScrollLock>
       <Container>
-        {/* <Title>New Bussiness</Title> */}
+        {/* <Title>New Business</Title> */}
         <Title>Front Desk</Title>
         <StyledLink exact to="/">
           <StyledFaHome />
@@ -45,9 +45,12 @@ const Container = styled.div`
   /* #051937 */
   /* #605bff */
   /* #4a30e0 */
-  background-color: #f7fafc;
+  background-color: ${({ theme }) => theme.body};
+  /* background-color: #f7fafc; */
   /* background-color: #ffffff; */
-  border-right: solid #f2f2f2;
+
+  border-right: solid
+    ${({ theme }) => (theme.mode == "light" ? "#f2f2f2" : "#2D2D30")};
   border-right-width: 1px;
 `;
 
@@ -82,7 +85,6 @@ const StyledLink = styled(NavLink)`
 const Text = styled.p`
   font-size: 14px;
   margin-left: 10px;
-  color: #000;
   ${StyledLink}:hover & {
     color: #fff;
   }
@@ -93,7 +95,6 @@ const Text = styled.p`
 `;
 
 const Title = styled.h5`
-  color: #000;
   margin-top: 30px;
   margin-bottom: 30px;
 `;

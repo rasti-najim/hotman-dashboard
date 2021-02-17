@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import { motion } from "framer-motion";
 
 export default function Card({ title, number }) {
@@ -30,7 +30,8 @@ const Container = styled(motion.div)`
   margin-top: 1.2rem;
 
   /* border: solid #e6eaff; */
-  border: solid #000;
+  border: solid;
+  border-color: ${({ theme }) => theme.text};
   border-width: 2px;
   /* box-shadow: 0px 1px 10px 0px rgba(0, 0, 0, 0.4);
   -webkit-box-shadow: 0px 1px 10px 0px rgba(0, 0, 0, 0.4);
