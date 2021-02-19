@@ -89,7 +89,7 @@ const Right = styled.div`
   align-items: flex-start;
   height: 100%;
   width: 100%;
-  background: #fff;
+  background: ${({ theme }) => (theme.mode == "light" ? "#fff" : "#1d1d1f")};
   margin-left: 1.5rem;
 `;
 

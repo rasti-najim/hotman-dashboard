@@ -52,7 +52,7 @@ const Container = styled(motion.div)`
   max-width: 50vw;
   margin: 0 auto;
   padding: 40px 20px;
-  background: #fff;
+  background: ${({ theme }) => (theme.mode == "light" ? "#fff" : "#1d1d1f")};
   border-radius: 10px;
   text-align: center;
 `;

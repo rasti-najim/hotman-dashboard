@@ -72,7 +72,7 @@ function App() {
                       <Route path="/rooms" component={Rooms} />
                     </Switch>
                   </React.Suspense>
-                  <Details />
+                  {/* <Details /> */}
                 </Container>
               </>
             ) : (

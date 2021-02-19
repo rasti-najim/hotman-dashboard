@@ -1,42 +1,54 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { Row } from "react-bootstrap";
 import styled from "styled-components";
 import { FaPlus } from "react-icons/fa";
 import { Frame, Page, Stack, useCycle } from "framer";
+import { AnimatePresence, AnimateSharedLayout, motion } from "framer-motion";
+import faker from "faker";
 
 // custom
 import Card from "../components/Card";
-import Table from "../components/Table";
 import Modal from "../components/Modal";
 import Add from "../components/Add";
-import { AnimatePresence, AnimateSharedLayout, motion } from "framer-motion";
-// import Modal from "../components/Modal";
+import Table from "../components/Table";
 
 export default function Overview({ toggleTheme }) {
   const [showModal, setShowModal] = useState(false);
 
-  const items = [
-    {
-      id: 0,
-      subtitle: "Cool Stuff",
-      title: "Framer Motion",
-    },
-    {
-      id: 1,
-      subtitle: "Cool Stuff",
-      title: "Framer Motion",
-    },
-    {
-      id: 2,
-      subtitle: "Cool Stuff",
-      title: "Framer Motion",
-    },
-    {
-      id: 3,
-      subtitle: "Cool Stuff",
-      title: "Framer Motion",
-    },
-  ];
+  const columns = useMemo(
+    () => [
+      {
+        Header: "ID",
+        // accessor: "show.language",
+        accessor: "id",
+      },
+      {
+        Header: "Guest",
+        // accessor: "show.genres",
+        accessor: "guest",
+        // Cell: ({ cell: { value } }) => <Genres values={value} />,
+      },
+      {
+        Header: "Room",
+        // accessor: "show.runtime",
+        accessor: "room",
+      },
+      {
+        Header: "Date",
+        // accessor: "show.status",
+        accessor: "date",
+      },
+    ],
+    []
+  );
+
+  const data = new Array(100).fill(true).map(() => ({
+    id: faker.random.number(),
+    guest: faker.name.findName(),
+    room: faker.random.number(),
+    // date: faker.date.past(),
+    date: faker.random.number(),
+  }));
 
   return (
     <Container>
@@ -47,7 +59,7 @@ export default function Overview({ toggleTheme }) {
         <Card title="Rooms Occupied" number={50} />
       </CardsContainer>
       <ReservationsContainer>
-        <h6>Reservations</h6>
+        {/* <h6>Reservations</h6>
         <SearchBox placeholder="Search name, room, or id" />
         <Button
           whileHover={{ scale: 1.1 }}
@@ -56,7 +68,7 @@ export default function Overview({ toggleTheme }) {
         >
           <StyledFaPlus />
           Add
-        </Button>
+        </Button> */}
         <Button
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
@@ -65,7 +77,7 @@ export default function Overview({ toggleTheme }) {
           Dark Mode
         </Button>
       </ReservationsContainer>
-      <Table />
+      <Table columns={columns} data={data} />
       <Stack direction="horizontal" size={100} gap={120}>
         <Frame background="#09F" size={25} radius="50%" />
         <Frame background="#05F" size={25} radius="50%" />
@@ -76,12 +88,6 @@ export default function Overview({ toggleTheme }) {
         <Frame>B</Frame>
         <Frame>C</Frame>
       </Page> */}
-      {/* <Modal showModal={showModal}>
-        <Add />
-      </Modal> */}
-      <Modal showModal={showModal} setShowModal={setShowModal}>
-        <Add setShowModal={setShowModal} />
-      </Modal>
     </Container>
   );
 }
