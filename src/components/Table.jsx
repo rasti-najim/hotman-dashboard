@@ -111,36 +111,42 @@ export default function Table({ columns, data }) {
 
 const THead = styled.thead`
   font-size: 14px;
-  color: #abadaf;
+  color: ${({ theme }) => (theme.mode == "light" ? "grey" : "#abadaf")};
   width: 100%;
-  border-left: 2px solid #000;
+  border-left: 2px solid
+    ${({ theme }) => (theme.mode == "light" ? "#fff" : "#000")};
 
   tr {
     border: 1px solid;
     border-left: none;
     border-right: none;
-    border-color: #4d5153;
+    border-color: ${({ theme }) =>
+      theme.mode == "light" ? "#dfdfde" : "#4d5153"};
   }
 
   th {
     padding: 8px;
-    border-left: 1px solid #4d5153;
+    border-left: 1px solid
+      ${({ theme }) => (theme.mode == "light" ? "#dfdfde" : "#4d5153")};
   }
 `;
 
 const TBody = styled.tbody`
-  border-left: 2px solid #000;
+  border-left: 2px solid
+    ${({ theme }) => (theme.mode == "light" ? "#fff" : "#000")}; ;
 `;
 
 const TRow = styled.tr`
   border: 1px solid;
   border-left: none;
   border-right: none;
-  border-color: #4d5153;
+  border-color: ${({ theme }) =>
+    theme.mode == "light" ? "#dfdfde" : "#4d5153"};
 
   td {
     padding: 8px;
-    border-left: 1px solid #4d5153;
+    border-left: 1px solid
+      ${({ theme }) => (theme.mode == "light" ? "#dfdfde" : "#4d5153")};
   }
 `;
 
