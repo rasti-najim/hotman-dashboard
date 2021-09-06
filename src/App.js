@@ -38,13 +38,13 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(true);
   const [theme, toggleTheme] = useDarkMode();
 
-  useEffect(() => {
-    const loggedInStatus = window.localStorage.getItem("loggedIn");
-    console.log(loggedInStatus);
-    loggedInStatus && loggedInStatus == "true"
-      ? setLoggedIn(true)
-      : setLoggedIn(false);
-  }, [loggedIn]);
+//   useEffect(() => {
+//     const loggedInStatus = window.localStorage.getItem("loggedIn");
+//     console.log(loggedInStatus);
+//     loggedInStatus && loggedInStatus == "true"
+//       ? setLoggedIn(true)
+//       : setLoggedIn(false);
+//   }, [loggedIn]);
 
   return (
     <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
