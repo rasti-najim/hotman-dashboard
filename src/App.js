@@ -35,7 +35,7 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 function App() {
-  const [loggedIn, setLoggedIn] = useState();
+  const [loggedIn, setLoggedIn] = useState(true);
   const [theme, toggleTheme] = useDarkMode();
 
   useEffect(() => {
